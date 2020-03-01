@@ -8,6 +8,7 @@ let indexService = require("./services/index");
 
 let indexRouter = require("./routes/index");
 let aboutRouter = require("./routes/about");
+let usersRouter = require("./routes/users/users");
 let authRouter = require("./routes/auth/auth");
 let servicesRouter = require("./routes/services/services");
 let servicesActionsRouter = require("./routes/services/actions/actions");
@@ -31,6 +32,7 @@ app.use(
 
 app.use("/", indexRouter);
 app.use("/", aboutRouter);
+app.use("/", usersRouter);
 app.use("/", authRouter);
 app.use("/", servicesRouter);
 app.use("/", servicesActionsRouter);
@@ -55,7 +57,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Start Trigger-Reaction Process
-app.listen(3000, "http://vps795192.ovh.net/", function() {
+app.listen(4000, function() {
     indexService.run();
 });
 

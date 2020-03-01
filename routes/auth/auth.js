@@ -81,6 +81,8 @@ router.post('/login', async function (req, res, next) {
                     access_token: user.access_token,
                     email: user.email,
                     name: user.name,
+                    services: '{}',
+                    areas: '{}',
                     account_type: user.account_type,
                     role: user.role
                 };
@@ -139,16 +141,15 @@ router.post('/authfacebook', async function (req, res, next) {
 
         if (name && access_token && facebook_id) {
             if ((await AREA51.getUserByFacebookId(facebook_id)) !== null)
-                return res
-                    .status(200)
-                    .json(await AREA51.getUserByFacebookId(facebook_id))
-                    .end();
+                return res.status(200).json(await AREA51.getUserByFacebookId(facebook_id)).end();
 
             let JSON = {
                 facebook_id: facebook_id,
                 account_type: 'facebook',
                 access_token: randtoken.generate(64),
                 name: name,
+                services: '{}',
+                areas: '{}',
                 services_auth: {
                     facebook: {
                         name: name,
@@ -209,6 +210,8 @@ router.post('/authgoogle', async function (req, res) {
         let google_id = proile_response.data.id;
         let photo_url = proile_response.data.picture;
         let access_token = response.data.access_token;
+        let services = response.data.services ? response.data.services : '{}';
+        let areas = response.data.areas ? response.data.areas : '{}';
 
         if (email && name && access_token && google_id && photo_url) {
             if ((await AREA51.getUserByEmail(email)) !== null) {
@@ -223,6 +226,8 @@ router.post('/authgoogle', async function (req, res) {
                 account_type: 'google',
                 access_token: access_token,
                 name: name,
+                services: services,
+                areas: areas,
                 services_auth: {
                     google: {
                         email: email,
