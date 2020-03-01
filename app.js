@@ -55,7 +55,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Start Trigger-Reaction Process
-app.listen(8080, "0.0.0.0", function() {
+app.listen(8081, "51.83.129.29", function() {
     indexService.run();
 });
 
