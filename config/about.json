@@ -1,0 +1,265 @@
+{
+    "client": {
+        "host": "10.101.53.35"
+    },
+    "server": {
+        "current_time": 1531680780,
+        "services": [
+            {
+                "name": "cryptocurrency",
+                "oauth2": false,
+                "actions": [
+                    {
+                        "name": "value",
+                        "description": "Detect if value of cryptocurrency has been passed"
+                    },
+                    {
+                        "name": "capitalization",
+                        "description": "Detect if capitalization of cryptocurrency has been passed"
+                    }
+                ]
+            },
+            {
+                "name": "typeform",
+                "oauth2": true,
+                "connectUrl": "https://api.typeform.com/oauth/authorize?client_id=DdGUbtv17aGTrtnFegPC8X3b9pg21iicAjc1MtihRaiC&scope=responses:read&redirect_uri=http://localhost:8081/usr/home?from=typeform",
+                "actions": [
+                    {
+                        "name": "newEntries",
+                        "description": "Triggers when there is new entry in your form."
+                    }
+                ]
+            },
+            {
+                "name": "trello",
+                "oauth2": true,
+                "connectUrl": "https://trello.com/1/authorize?name=AREA51&scope=read,write,account&response_type=token&key=f4319a3120463a49dfe493eefb21db51&redirect_uri=http://localhost:8081/usr/home?from=trello",
+                "actions": [
+                    {
+                        "name": "newCardInList",
+                        "description": "Detect if a new card is added in a List"
+                    },
+                    {
+                        "name": "newListInBoard",
+                        "description": "Detect if a new list is added in a Board"
+                    },
+                    {
+                        "name": "movedCard",
+                        "description": "Detect if a card is moved"
+                    }
+                ]
+            },
+            {
+                "name": "discord",
+                "oauth2": true,
+                "connectUrl": "https://discordapp.com/oauth2/authorize?response_type=code&client_id=674554292085981185&scope=identify%20bot&permissions=8&redirect_uri=http://localhost:8081/usr/home?from=discord",
+                "actions": [
+                    {
+                        "name": "newMessage",
+                        "description": "Trigger when there is a new message on a channel."
+                    }
+                ],
+                "reactions": [
+                    {
+                        "name": "addRole",
+                        "description": "Add a new role on a user."
+                    },
+                    {
+                        "name": "removeRole",
+                        "description": "Remove a role of a user."
+                    },
+                    {
+                        "name": "setNameChannel",
+                        "description": "Set the new name of a channel."
+                    },
+                    {
+                        "name": "setParentChannel",
+                        "description": "Set the new parent of a channel."
+                    },
+                    {
+                        "name": "setNSFWChannel",
+                        "description": "Set the NSFW status of a channel."
+                    },
+                    {
+                        "name": "setRateLimitChannel",
+                        "description": "Set the rate limit of a channel."
+                    },
+                    {
+                        "name": "setTopicChannel",
+                        "description": "Set the new topic of a channel."
+                    },
+                    {
+                        "name": "setPositionChannel",
+                        "description": "Set the position of a channel."
+                    },
+                    {
+                        "name": "sendMessage",
+                        "description": "Send a new message on a channel."
+                    }
+                ]
+            },
+            {
+                "name": "twitch",
+                "oauth2": false,
+                "actions": [
+                    {
+                        "name": "newFollower",
+                        "description": "Triggers when a new follower has been found on an account."
+                    },
+                    {
+                        "name": "newGameStream",
+                        "description": "Triggers when a new stream is found on a game."
+                    },
+                    {
+                        "name": "userWentLive",
+                        "description": "Triggers when a user went live."
+                    }
+                ]
+            },
+            {
+                "name": "youtube",
+                "oauth2": false,
+                "actions": [
+                    {
+                        "name": "newMostPopularVideo",
+                        "description": "Triggers when a new video is most popular."
+                    },
+                    {
+                        "name": "subscribersCount",
+                        "description": "Triggers when a channel reach an ammount of subscribers."
+                    },
+                    {
+                        "name": "viewCount",
+                        "description": "Triggers when a channel reach an ammount of views."
+                    },
+                    {
+                        "name": "newVideo",
+                        "description": "Triggers when a user upload a new video."
+                    }
+                ]
+            },
+            {
+                "name": "nasa",
+                "oauth2": false,
+                "actions": [
+                    {
+                        "name": "imageOfTheDay",
+                        "description": "Triggers when a new image of the day is posted."
+                    },
+                    {
+                        "name": "nearAsteroids",
+                        "description": "Triggers when a new asteroids passes near the earth (yes... terrifying)."
+                    },
+                    {
+                        "name": "interplanetaryShock",
+                        "description": "Triggers when a new shock between two interplanetary entities occurs."
+                    }
+                ]
+            },
+            {
+                "name": "spotify",
+                "oauth2": false,
+                "actions": [
+                    {
+                        "name": "newArtistAlbum",
+                        "description": "Triggers when an artist has released a new album."
+                    },
+                    {
+                        "name": "newArtistTopTrack",
+                        "description": "Triggers when an artist's top track changes."
+                    },
+                    {
+                        "name": "newTop50Track",
+                        "description": "Triggers when a new track is found on the International Top 50."
+                    }
+                ]
+            },
+            {
+                "name": "github",
+                "oauth2": true,
+                "connectUrl": "https://github.com/login/oauth/authorize?client_id=604b48ec3267e7b3ab2e&scope=public_repo&redirect_uri=http://localhost:8081/usr/home?from=github",
+                "actions": [
+                    {
+                        "name": "newRepository",
+                        "description": "Triggers when a new public repository is created."
+                    }
+                ],
+                "reactions": [
+                    {
+                        "name": "starRepository",
+                        "description": "Star a repository."
+                    },
+                    {
+                        "name": "unstarRepository",
+                        "description": "Unstar a repository."
+                    }
+                ]
+            },
+            {
+                "name": "yammer",
+                "oauth2": true,
+                "connectUrl": "https://www.yammer.com/epitech.eu/oauth2/authorize?client_id=iuehWeP8YgCsUboIBI5EQ&response_type=code&redirect_uri=http://localhost:8081/usr/home?from=yammer",
+                "actions": [
+                    {
+                        "name": "newMessageInGroup",
+                        "description": "Triggers when a new message is posted in a Group"
+                    }
+                ],
+                "reactions": [
+                    {
+                        "name": "postMessageInGroup",
+                        "description": "Send a message in a group"
+                    }
+                ]
+            },
+            {
+                "name": "coronavirus",
+                "oauth2": false,
+                "actions": [
+                    {
+                        "name": "newContaminatedInCountry",
+                        "description": "Triggers when a new person is contaminated in a country"
+                    },
+                    {
+                        "name": "newRecoveredInCountry",
+                        "description": "Triggers when a new person is recovered in a country"
+                    }
+                ],
+                "reactions": []
+            },
+            {
+                "name": "dropbox",
+                "oauth2": true,
+                "connectUrl": "https://www.dropbox.com/oauth2/authorize?response_type=code&client_id=izn9we8fkah0zim&redirect_uri=http://localhost:8081/usr/home?from=dropbox",
+                "actions": [
+                    {
+                        "name": "newFile",
+                        "description": "Triggers when a new file is uploaded in a directory."
+                    }
+                ],
+                "reactions": []
+            },
+            {
+                "name": "email",
+                "oauth2": false,
+                "actions": [],
+                "reactions": [
+                    {
+                        "name": "sendEmail",
+                        "description": "Send an email."
+                    }
+                ]
+            },
+            {
+                "name": "airquality",
+                "oauth2": false,
+                "actions": [
+                    {
+                        "name": "valueExcess",
+                        "description": "Triggers when a city's air quality has went trough the excess value."
+                    }
+                ]
+            }
+        ]
+    }
+}
