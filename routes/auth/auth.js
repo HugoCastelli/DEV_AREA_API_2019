@@ -81,8 +81,8 @@ router.post('/login', async function (req, res, next) {
                     access_token: user.access_token,
                     email: user.email,
                     name: user.name,
-                    services: '{}',
-                    areas: '{}',
+                    services: user.services,
+                    areas: user.areas,
                     account_type: user.account_type,
                     role: user.role
                 };
