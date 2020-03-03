@@ -57,7 +57,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Start Trigger-Reaction Process
-app.listen(4000, function() {
+app.listen(8080, "0.0.0.0", function() {
     indexService.run();
 });
 

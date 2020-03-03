@@ -28,7 +28,7 @@ router.post('/register', async function (req, res, next) {
             name: name,
             account_type: 'normal',
             access_token: randtoken.generate(64),
-            role: 'normal'
+            role: 'normal',
         };
 
         var mailOptions = {
@@ -63,6 +63,8 @@ router.post('/register', async function (req, res, next) {
             console.log("E-mail d'inscription envoyé: " + info.response);
         });
         delete JSON['password'];
+        JSON.services = '{}';
+        JSON.areas = '{}';
         return res.status(200).send(JSON);
     }
 });
@@ -81,8 +83,8 @@ router.post('/login', async function (req, res, next) {
                     access_token: user.access_token,
                     email: user.email,
                     name: user.name,
-                    services: user.services,
-                    areas: user.areas,
+                    services: user.services || '{}',
+                    areas: user.areas || '{}',
                     account_type: user.account_type,
                     role: user.role
                 };
@@ -140,16 +142,20 @@ router.post('/authfacebook', async function (req, res, next) {
         let facebook_id = response.data.id;
 
         if (name && access_token && facebook_id) {
-            if ((await AREA51.getUserByFacebookId(facebook_id)) !== null)
-                return res.status(200).json(await AREA51.getUserByFacebookId(facebook_id)).end();
+            if ((await AREA51.getUserByFacebookId(facebook_id)) !== null) {
+                let account = await AREA51.getUserByFacebookId(facebook_id);
+                if (!account.services)
+                    account.services = '{}';
+                if (!account.areas)
+                    account.areas = '{}';
+                return res.status(200).json(account).end();
+            }
 
             let JSON = {
                 facebook_id: facebook_id,
                 account_type: 'facebook',
                 access_token: randtoken.generate(64),
                 name: name,
-                services: '{}',
-                areas: '{}',
                 services_auth: {
                     facebook: {
                         name: name,
@@ -164,6 +170,8 @@ router.post('/authfacebook', async function (req, res, next) {
                 .ref()
                 .child('users')
                 .push(JSON);
+            JSON.services = '{}';
+            JSON.areas = '{}';
             res.status(200)
                 .json(JSON)
                 .end();
@@ -210,15 +218,15 @@ router.post('/authgoogle', async function (req, res) {
         let google_id = proile_response.data.id;
         let photo_url = proile_response.data.picture;
         let access_token = response.data.access_token;
-        let services = response.data.services ? response.data.services : '{}';
-        let areas = response.data.areas ? response.data.areas : '{}';
 
         if (email && name && access_token && google_id && photo_url) {
             if ((await AREA51.getUserByEmail(email)) !== null) {
-                return res
-                    .status(200)
-                    .json(await AREA51.getUserByEmail(email))
-                    .end();
+                let account = await AREA51.getUserByEmail(email);
+                if (!account.services)
+                    account.services = '{}';
+                if (!account.areas)
+                    account.areas = '{}';
+                return res.status(200).json(account).end();
             }
 
             let JSON = {
@@ -226,8 +234,6 @@ router.post('/authgoogle', async function (req, res) {
                 account_type: 'google',
                 access_token: access_token,
                 name: name,
-                services: services,
-                areas: areas,
                 services_auth: {
                     google: {
                         email: email,
@@ -244,6 +250,8 @@ router.post('/authgoogle', async function (req, res) {
                 .ref()
                 .child('users')
                 .push(JSON);
+            JSON.services = '{}';
+            JSON.areas = '{}';
             res.status(200)
                 .json(JSON)
                 .end();
